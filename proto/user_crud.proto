@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option go_package = "./proto";
+package user_crud;
+
+service UserCrudService{
+    rpc CreateUser (CreateRequest) returns (CreateResponse);
+    rpc ReadUser(ReadRequest) returns (ReadResponse);
+    rpc UpdateUser(UpdateRequest) returns (UpdateResponse);
+    rpc DeleteUser (DeleteRequest) returns (DeleteResponse);
+}
+message CreateRequest{
+    string name = 1;
+    string email = 2;
+    string phone = 3;
+    string password = 4;
+}
+message CreateResponse{
+    string id = 1;
+}
+message ReadRequest{
+    string id = 1;
+}
+message ReadResponse{
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+}
+message UpdateRequest{
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+}
+message UpdateResponse{
+    bool success = 1;
+}
+message DeleteRequest{
+    string id = 1;
+}
+message DeleteResponse{
+    bool success = 1;
+}
