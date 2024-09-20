@@ -1,14 +1,14 @@
 package main
 
 import (
-	"grpc_user_crud/controllers"
-	"grpc_user_crud/database"
-	"grpc_user_crud/repositories"
-	"grpc_user_crud/services"
+	"grpc/grpc_user_crud/controllers"
+	"grpc/grpc_user_crud/database"
+	"grpc/grpc_user_crud/repositories"
+	"grpc/grpc_user_crud/services"
 	"log"
 	"net"
 
-	pb "grpc_user_crud/proto"
+	pb "grpc/grpc_user_crud/proto"
 
 	"google.golang.org/grpc"
 )
@@ -26,7 +26,6 @@ func main() {
 	}
 	grpcServer := grpc.NewServer()
 	pb.RegisterUserCrudServiceServer(grpcServer, crudController)
-
 	log.Printf("server listening at %v", lis.Addr())
 
 	err = grpcServer.Serve(lis)
