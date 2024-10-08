@@ -32,6 +32,10 @@ type UserRepositoryInterface interface {
 	Delete(ctx context.Context, id string) error
 }
 
+func NewUserRepository(collection *mongo.Collection) UserRepositoryInterface {
+	return &UserRepository{Collection: collection}
+}
+
 func (r *UserRepository) Create(ctx context.Context, user *models.User) (string, error) {
 	// check if already email is present
 	if err := r.FindOne(ctx, bson.M{"email": user.Email}).Err(); err == nil {

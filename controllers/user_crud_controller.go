@@ -20,6 +20,10 @@ type UserCrudController struct {
 	pb.UnimplementedUserCrudServiceServer
 }
 
+func NewUserCrudController(service services.UserServiceInterface) *UserCrudController {
+	return &UserCrudController{Service: service}
+}
+
 func (c *UserCrudController) CreateUser(ctx context.Context, req *pb.CreateRequest) (*pb.CreateResponse, error) {
 	name := req.GetName()
 	if len(name) < 2 || len(name) > 30 || !regexp.MustCompile(`^[a-zA-Z\s]+$`).MatchString(name) {

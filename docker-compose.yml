@@ -1,0 +1,8 @@
+version: '3'
+services:
+  grpc_server:
+    build: .
+    ports:
+      - "50052:50052"
+    environment:
+      MONGODB_URL: "mongodb+srv://admin:admin@cluster0.x4pzq.mongodb.net/"

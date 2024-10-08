@@ -1,0 +1,15 @@
+# Ignore Go build artifacts
+bin/
+pkg/
+*.out
+
+# Ignore vendor folder (if using Go Modules)
+vendor/
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore IDE and editor configurations
+.vscode/
+.idea/

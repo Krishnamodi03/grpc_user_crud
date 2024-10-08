@@ -1,8 +1,9 @@
 module grpc/grpc_user_crud
 
-go 1.22.5
+go 1.22
 
 require (
+	github.com/google/wire v0.6.0
 	github.com/joho/godotenv v1.5.1
 	github.com/stretchr/testify v1.9.0
 	go.mongodb.org/mongo-driver v1.16.1

@@ -1,14 +1,13 @@
 package main
 
 import (
-	"grpc/grpc_user_crud/controllers"
 	"grpc/grpc_user_crud/database"
-	"grpc/grpc_user_crud/repositories"
-	"grpc/grpc_user_crud/services"
 	"log"
 	"net"
 
 	pb "grpc/grpc_user_crud/proto"
+
+	"grpc/grpc_user_crud/wire"
 
 	"google.golang.org/grpc"
 )
@@ -16,9 +15,14 @@ import (
 func main() {
 	collection := database.DB
 	// Setup repository, service, and controller
-	userRepo := &repositories.UserRepository{Collection: collection}
-	userService := &services.UserService{Repo: userRepo}
-	crudController := &controllers.UserCrudController{Service: userService}
+
+	// (old way which is manual dependency injection)
+	// userRepo := &repositories.UserRepository{Collection: collection}
+	// userService := &services.UserService{Repo: userRepo}
+	// crudController := &controllers.UserCrudController{Service: userService}
+
+	// (New way OF DEPENDENCY INJECTION using wire)
+	crudController := wire.InitializeUserCrudController(collection)
 
 	lis, err := net.Listen("tcp", ":50052")
 	if err != nil {

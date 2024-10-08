@@ -20,6 +20,10 @@ type UserServiceInterface interface {
 	Delete(ctx context.Context, id string) error
 }
 
+func NewUserService(repo repositories.UserRepositoryInterface) UserServiceInterface {
+	return &UserService{Repo: repo}
+}
+
 func (s *UserService) Create(ctx context.Context, name, email, phone, password string) (string, error) {
 	user := &models.User{
 		ID:       primitive.NewObjectID(),
