@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: grpc-user-crud
-        image: gcr.io/fluted-cogency-434512-n4/grpc_user_crud:01
+        image: krishna03032003/grpc_user_crud:02
         ports:
         - containerPort: 50052
         env:
